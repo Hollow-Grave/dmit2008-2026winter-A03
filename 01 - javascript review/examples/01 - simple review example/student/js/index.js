@@ -1,8 +1,23 @@
-/*
-Enter JS here
+let topicList = document.querySelector(".topics-list")
+let newTopicForm = document.querySelector(".new-topic-form")
 
-HTML for list topic list item
-<li class="list-group-item">
-    NEW TOPIC HERE
-</li>
-*/
+
+const addTopicToPage = (topicName, topicListElement) => {
+    let newTopicElement = `<li class="list-group-item"> ${topicName} </li>`
+    topicListElement.innerHTML += newTopicElement
+}
+
+newTopicForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+    let topicInput = e.target.elements["new-topic"]
+    let topicText = topicInput.value
+
+    if (!topicText){
+        topicInput.classList.add("is-invalid")
+    } else {
+        topicInput.classList.remove("is-invalid")
+    }
+
+    addTopicToPage(topicText, topicList)
+})
+
